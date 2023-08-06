@@ -138,3 +138,99 @@ def sen_t (a):
 def tan_t (a):
     res = sen_t(a) * div_t(cos_t(a))
     return res
+
+# La función ln_t aproxima el valor de ln(a)
+# Sintáxis de la función: res = ln_t (a)
+# Parámetros de entrada:
+#         a = número real mayor a cero
+# Parámetros de salida:
+#         res = aproximación del valor ln(a)
+
+def ln_t (a):
+
+    #Casos especiales
+    if a <= 0: return False
+
+    res = 0
+    const = (a-1) * div_t(a+1)
+
+    for n in range(iterMax):
+       
+        res_n = res + 2 * const * 1 * div_t(2 * n + 1) * const ** (2 * n);
+        
+        err = abs(res_n - res)
+        res = res_n
+
+        if err < tol:
+            break
+
+    return res
+
+# La función log_t aproxima el valor de log_y(x)
+# Sintáxis de la función: res = log_t (x, y)
+# Parámetros de entrada:
+#         x = número real mayor a cero
+#         y = número entero mayor a 2
+# Parámetros de salida:
+#         res = aproximación del valor log_y(x)
+def log_t (x , y):
+
+    # Casos especiales
+    if x <= 0: return False
+    if y < 2 or not isinstance(y, int): return False
+
+    res = ln_t(x) * div_t(ln_t(y))
+
+    return res
+
+# >>>>>>>>>>> Preguntar sobre x ** y <<<<<<<<<<<<<<<<<<<<
+
+# La función sinh_t aproxima el valor de sinh(a)
+# Sintáxis de la función: res = sinh (a)
+# Parámetros de entrada:
+#         a = número real
+# Parámetros de salida:
+#         res = aproximación del valor sinh(a)
+
+def sinh_t (a):
+
+    res = 0;
+
+    for n in range(iterMax):
+       
+        res_n = res + a ** (2 * n + 1) * div_t(factorial(2 * n + 1))
+        
+        err = abs(res_n - res)
+        res = res_n
+
+        if err < tol:
+            break
+
+    return res
+
+# La función cosh aproxima el valor de cosh(a)
+# Sintáxis de la función: [res, error, iter] = cosh (a, iterMax, tol)
+# Parámetros de entrada:
+#         a = número real
+#         iterMax = número entero positivo, que representa la cantidad de iteraciones moximas del motodo
+#         tol =  número real positivo, que es el criterio de parada del error, donde |res(k+1)-res(k)| < tol
+# Parámetros de salida:
+#         res = aproximación del valor cosh(a)
+#         err = error dado por la formula |res(k+1)-res(k)|
+#         iter = cantidad de iteraciones realizadas
+
+def cosh_t (a, iterMax, tol):
+    
+    res = 0
+
+    for n in range(iterMax):
+       
+        res_n = res + a ** (2 * n) * div_t(factorial(2 * n))
+        
+        err = abs(res_n - res)
+        res = res_n
+
+        if err < tol:
+            break
+
+    return res
