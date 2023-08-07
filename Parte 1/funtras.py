@@ -24,13 +24,13 @@ def factorial (a):
 def get_epsilon (a):
 
     epsilon = 2.2204 * 10 ** -16
-
     if a > 0 and a < 1: return epsilon
     elif a > factorial(0) and a <= factorial(20): return epsilon ** 2
     elif a > factorial(20) and a <= factorial(40): return epsilon ** 4
     elif a > factorial(40) and a <= factorial(60): return epsilon ** 8
     elif a > factorial(60) and a <= factorial(80): return epsilon ** 11
     elif a > factorial(80) and a <= factorial(100): return epsilon ** 15
+    elif a > factorial(100) and a <= factorial(120): return epsilon ** 19
     else: return 0
 
 # La función div_t aproxima el valor de 1/a
@@ -111,7 +111,7 @@ def cos_t (a):
         
         err = abs(res_n - res)
         res = res_n
-
+     
         if err < tol:
             break
 
@@ -295,3 +295,108 @@ def root_t (x, y):
             break
 
     return res
+
+# La función asin_t aproxima el valor de arcsin(a)
+# Sintáxis de la función: res = asin_t (a)
+# Parámetros de entrada:
+#         a = número real entre -1 y 1
+# Parámetros de salida:
+#         res = aproximación del valor arcsin(a)
+
+def asin_t (a):
+    # Casos especiales
+    if a > 1 or a < -1: return False
+    if a == 1: return pi_t * div_t(2)
+    if a == -1: return - pi_t * div_t(2)
+
+    res = 0
+
+    for n in range(iterMax):
+       
+        res_n = res + a ** (2 * n + 1) * factorial(2 * n) * div_t(4 ** n * factorial(n) ** 2 * (2 * n + 1))
+        
+        err = abs(res_n - res)
+        res = res_n
+
+        if err < tol:
+            break
+
+    return res
+
+# La función atan_t aproxima el valor de arctan(a)
+# Sintáxis de la función: res = atan_t (a)
+# Parámetros de entrada:
+#         a = número real
+# Parámetros de salida:
+#         res = aproximación del valor arctan(a)
+
+def atan_t (a):
+
+    res = 0
+
+    for n in range(iterMax):
+        if a > 1: 
+            res_n = res + (-1) ** n * 1 * div_t ((2 * n + 1) * a ** (2 * n + 1))
+        elif a < -1:
+            res_n = res + (-1) ** n * 1 * div_t ((2 * n + 1) * a ** (2 * n + 1))
+        else: 
+            res_n = res + (-1) ** n * a ** (2 * n + 1) * div_t(2 * n + 1)
+        
+        err = abs(res_n - res)
+        res = res_n;
+
+        if err < tol:
+            break
+
+    if a > 1:
+            res = -1 * res + pi_t * div_t(2)
+    
+    if a < -1:
+            res = -1 * res - pi_t* div_t(2)
+
+    return res
+
+# La función acos_t aproxima el valor de arccos(a)
+# Sintáxis de la función: res = acos_t (a)
+# Parámetros de entrada:
+#         a = número real entre -1 y 1
+# Parámetros de salida:
+#         res = aproximación del valor arcsin(a)
+
+def acos_t (a):
+    res = pi_t * div_t(2) - asin_t(a)
+    return res
+
+# La función sec_t aproxima el valor de sec(a)
+# Sintáxis de la función: res = sec_t (a)
+# Parámetros de entrada:
+#         a = número real
+# Parámetros de salida:
+#         res = aproximación del valor sec(a)
+
+def sec_t (a):
+    res = div_t(cos_t(a))
+    return res
+
+# La función cot_t aproxima el valor de cot(a)
+# Sintáxis de la función: res = cot_t (a)
+# Parámetros de entrada:
+#         a = número real
+# Parámetros de salida:
+#         res = aproximación del valor cot(a)
+
+def cot_t (a):
+    res = cos_t(a) / div_t(sen_t(a))
+    return res
+
+# La función csc_t aproxima el valor de csc(a)
+# Sintáxis de la función: res = csc_t (a)
+# Parámetros de entrada:
+#         a = número real
+# Parámetros de salida:
+#         res = aproximación del valor csc(a)
+
+def csc_t (a):
+    res = div_t(sen_t(a))
+    return res
+
