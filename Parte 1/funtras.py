@@ -99,8 +99,8 @@ def exp_t (a):
 def cos_t (a):
     # Casos especiales
     if a == 0: return 1
-    if a > 0 : a = a - (2 * pi_t * int(a * div_t(2 * pi_t))) # Modificación de a entre ]0 , 2π]
-    else: a = a + (2 * pi_t * int(a * div_t(-2 * pi_t))) # Modificación de a entre [-2π , 0[
+    #if a > 0 : a = a - (2 * pi_t * int(a * div_t(2 * pi_t))) # Modificación de a entre ]0 , 2π]
+    #else: a = a + (2 * pi_t * int(a * div_t(-2 * pi_t))) # Modificación de a entre [-2π , 0[
     
     res = 0
 
@@ -110,7 +110,7 @@ def cos_t (a):
         
         err = abs(res_n - res)
         res = res_n
-     
+        print (res)
         if err < tol:
             break
 
@@ -183,7 +183,7 @@ def log_t (x , y):
 
     return res
 
-# >>>>>>>>>>> Preguntar sobre x ** y <<<<<<<<<<<<<<<<<<<<
+# >>>>>>>>>>> Preguntar sobre x ** y <<<<<<<<<<<<<<<<<<
 
 # La función sinh_t aproxima el valor de sinh(a)
 # Sintáxis de la función: res = sinh (a)
@@ -205,7 +205,7 @@ def sinh_t (a):
 
         if err < tol:
             break
-        
+
     return res
 
 # La función cosh_t aproxima el valor de cosh(a)
