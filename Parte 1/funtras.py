@@ -1,5 +1,5 @@
 # Variables Globales importantes para las funciones
-tol = 10 ** -8 # número entero positivo, que representa la cantidad de iteraciones moximas del motodo
+tol = 10 ** -8 # número entero positivo, que representa la cantidad de iteraciones máximas del motodo
 iterMax = 2500 # número real positivo, que es el criterio de parada del error, donde |res(k+1)-res(k)| < tol
 pi_t = 3.14159265358979323846 # cantidad de veces en la que la circunferencia de un círculo puede ser dividida por su diámetro
 
@@ -30,7 +30,6 @@ def get_epsilon (a):
     elif a > factorial(40) and a <= factorial(60): return epsilon ** 8
     elif a > factorial(60) and a <= factorial(80): return epsilon ** 11
     elif a > factorial(80) and a <= factorial(100): return epsilon ** 15
-    elif a > factorial(100) and a <= factorial(120): return epsilon ** 19
     else: return 0
 
 # La función div_t aproxima el valor de 1/a
@@ -100,8 +99,8 @@ def exp_t (a):
 def cos_t (a):
     # Casos especiales
     if a == 0: return 1
-    if a > 0 : a = a - (2 * pi_t * int(a * div_t(2 * pi_t))) # Modificación de a entre ]0 , π]
-    else: a = a + (2 * pi_t * abs(int(a * div_t(2 * pi_t)))) # Modificación de a entre [-π , 0[
+    if a > 0 : a = a - (2 * pi_t * int(a * div_t(2 * pi_t))) # Modificación de a entre ]0 , 2π]
+    else: a = a + (2 * pi_t * int(a * div_t(-2 * pi_t))) # Modificación de a entre [-2π , 0[
     
     res = 0
 
@@ -206,7 +205,7 @@ def sinh_t (a):
 
         if err < tol:
             break
-
+    print(n)
     return res
 
 # La función cosh_t aproxima el valor de cosh(a)
