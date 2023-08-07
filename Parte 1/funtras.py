@@ -205,7 +205,7 @@ def sinh_t (a):
 
         if err < tol:
             break
-    print(n)
+        
     return res
 
 # La función cosh_t aproxima el valor de cosh(a)
