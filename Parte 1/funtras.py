@@ -99,8 +99,9 @@ def exp_t (a):
 def cos_t (a):
     # Casos especiales
     if a == 0: return 1
-    #if a > 0 : a = a - (2 * pi_t * int(a * div_t(2 * pi_t))) # Modificación de a entre ]0 , 2π]
-    #else: a = a + (2 * pi_t * int(a * div_t(-2 * pi_t))) # Modificación de a entre [-2π , 0[
+    while a < (-2 * pi_t) or a > (2 * pi_t):
+        if a > (2 * pi_t): a -= (2 * pi_t) # Modificación de a entre ]0 , 2π]
+        if a < (-2 * pi_t): a += (2 * pi_t) # Modificación de a entre [-2π , 0[
     
     res = 0
 
@@ -110,11 +111,12 @@ def cos_t (a):
         
         err = abs(res_n - res)
         res = res_n
-        print (res)
         if err < tol:
             break
 
     return res
+
+print(cos_t(100))
 
 # La función sen_t aproxima el valor de sen(a)
 # Sintáxis de la función: res = sen_t (a)
@@ -127,6 +129,8 @@ def sen_t (a):
     if a == 0: return 0
     res = cos_t(a - pi_t * div_t(2)) 
     return res
+
+print(sen_t(100))
 
 # La función tan_t aproxima el valor de tan(a)
 # Sintáxis de la función: res = tan_t (a)
