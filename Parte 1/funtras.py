@@ -116,8 +116,6 @@ def cos_t (a):
 
     return res
 
-print(cos_t(100))
-
 # La función sen_t aproxima el valor de sen(a)
 # Sintáxis de la función: res = sen_t (a)
 # Parámetros de entrada:
@@ -127,10 +125,8 @@ print(cos_t(100))
 
 def sen_t (a):
     if a == 0: return 0
-    res = cos_t(a - pi_t * div_t(2)) 
+    res = cos_t(a - pi_t * 0.5) 
     return res
-
-print(sen_t(100))
 
 # La función tan_t aproxima el valor de tan(a)
 # Sintáxis de la función: res = tan_t (a)
@@ -177,6 +173,7 @@ def ln_t (a):
 #         y = número entero mayor a 2
 # Parámetros de salida:
 #         res = aproximación del valor log_y(x)
+
 def log_t (x , y):
 
     # Casos especiales
@@ -187,7 +184,26 @@ def log_t (x , y):
 
     return res
 
-# >>>>>>>>>>> Preguntar sobre x ** y <<<<<<<<<<<<<<<<<<
+# La función power_t aproxima el valor de x ^ y
+# Sintáxis de la función: res = power_t (x, y)
+# Parámetros de entrada:
+#         x = número real
+#         y = número real
+# Parámetros de salida:
+#         res = aproximación del valor x ^ y
+
+def power_t (x , y):
+
+    # Casos especiales
+    if x <= 0 and isinstance(y, float): return False
+    elif x <= 0 and isinstance(y, int):
+        if y % 2 == 0:
+            res = exp_t(y * ln_t(x))
+        else:
+            res = -1 * exp_t(y * ln_t(-1 * x))
+    else:
+           res = exp_t(y * ln_t(x))     
+    return res
 
 # La función sinh_t aproxima el valor de sinh(a)
 # Sintáxis de la función: res = sinh (a)
@@ -285,7 +301,7 @@ def root_t (x, y):
     if not isinstance(y, int) or y < 2: return False
     if y % 2 == 0 and x < 0 : return False
 
-    res = x / 2
+    res = x * 0.5
 
     for n in range(iterMax):
 
