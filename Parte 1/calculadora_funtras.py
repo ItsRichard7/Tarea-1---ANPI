@@ -7,9 +7,9 @@ class Interfaz:
         #Inicializar la ventana con un título
         self.ventana = ventana
         self.ventana.title("Calculadora NumPy")
-        self.ventana.geometry("390x690")
+        self.ventana.geometry("390x620")
         self.ventana.resizable(False, False)
-        self.ventana.configure(background="#1E0B05")
+        self.ventana.configure(background="#1f1f1f")
 
         #Agregar una caja de texto para que sea la pantalla de la calculadora
         self.pantalla = Text(self.ventana, font=('arial',23,'bold'), bd = 20, bg = "powder blue")
@@ -37,34 +37,59 @@ class Interfaz:
         self.botonCosh = Button(self.ventana, font = ('arial', 12, 'bold') , text = "cosh(x)", bg="#f6f6f6", command= self.reiniciar, bd=3)
         self.botonCosh.place(x=110, y=310, width=80, height=50)
 
-        """boton1 = self.crearBoton("senh(x)")
-        boton2 = self.crearBoton("cosh(x)")
-        boton3 = self.crearBoton("tanh(x)")
-        boton4 = self.crearBoton("asen(x)")
-        boton5 = self.crearBoton("acos(x)")
-        boton6 = self.crearBoton("atan(x)")
-        boton7 = self.crearBoton("sec(x)")
-        boton8 = self.crearBoton("cos(x)")
-        boton9 = self.crearBoton("tan(x)")
-        boton10 = self.crearBoton("ln(x)")
-        boton11 = self.crearBoton("log₁₀(x)")
-        boton12 = self.crearBoton("logᵧ(x)")
-        boton13 = self.crearBoton("1/x")
-        boton14 = self.crearBoton("√x")
-        boton15 = self.crearBoton("ʸ√x")
-        boton16 = self.crearBoton("exp(x)")
-        boton17 = self.crearBoton("x^y")
-        boton18 = self.crearBoton("x!")
+        self.botonTanh = Button(self.ventana, font = ('arial', 12, 'bold') , text = "tanh(x)", bg="#f6f6f6", command= self.reiniciar, bd=3)
+        self.botonTanh.place(x=200, y=310, width=80, height=50)
 
-        #Ubicar los botones con el gestor grid
-        botones = [boton1, boton2, boton3, boton4, boton5, boton6, boton7, 
-                   boton8, boton9, boton10, boton11, boton12, boton13, boton14, boton15, boton16, boton17, boton18]
-        contador = 0
-        for fila in range(2,8):
-            for columna in range(3):
-                botones[contador].grid(row = fila , column = columna)
-                contador += 1"""
-        return
+        self.botonAsen = Button(self.ventana, font = ('arial', 12, 'bold') , text = "asen(x)", bg="#f6f6f6", command= self.reiniciar, bd=3)
+        self.botonAsen.place(x=290, y=310, width=80, height=50)
+
+        self.botonAcos = Button(self.ventana, font = ('arial', 12, 'bold') , text = "acos(x)", bg="#f6f6f6", command= self.reiniciar, bd=3)
+        self.botonAcos.place(x=20, y=370, width=80, height=50)
+
+        self.botonAtan = Button(self.ventana, font = ('arial', 12, 'bold') , text = "atan(x)", bg="#f6f6f6", command= self.reiniciar, bd=3)
+        self.botonAtan.place(x=110, y=370, width=80, height=50)
+
+        self.botonSec = Button(self.ventana, font = ('arial', 12, 'bold') , text = "sec(x)", bg="#f6f6f6", command= self.reiniciar, bd=3)
+        self.botonSec.place(x=200, y=370, width=80, height=50)
+
+        self.botonCsc = Button(self.ventana, font = ('arial', 12, 'bold') , text = "csc(x)", bg="#f6f6f6", command= self.reiniciar, bd=3)
+        self.botonCsc.place(x=290, y=370, width=80, height=50)
+
+        self.botonCot = Button(self.ventana, font = ('arial', 12, 'bold') , text = "cot(x)", bg="#f6f6f6", command= self.reiniciar, bd=3)
+        self.botonCot.place(x=20, y=430, width=80, height=50)
+
+        self.botonSen = Button(self.ventana, font = ('arial', 12, 'bold') , text = "sen(x)", bg="#f6f6f6", command= self.reiniciar, bd=3)
+        self.botonSen.place(x=110, y=430, width=80, height=50)
+
+        self.botonTan = Button(self.ventana, font = ('arial', 12, 'bold') , text = "tan(x)", bg="#f6f6f6", command= self.reiniciar, bd=3)
+        self.botonTan.place(x=200, y=430, width=80, height=50)
+
+        self.botonLn = Button(self.ventana, font = ('arial', 12, 'bold') , text = "ln(x)", bg="#f6f6f6", command= self.reiniciar, bd=3)
+        self.botonLn.place(x=290, y=430, width=80, height=50)
+
+        self.botonlog10 = Button(self.ventana, font = ('arial', 12, 'bold') , text = "log₁₀(x)", bg="#f6f6f6", command= self.reiniciar, bd=3)
+        self.botonlog10.place(x=20, y=490, width=80, height=50)
+
+        self.botonlogy = Button(self.ventana, font = ('arial', 12, 'bold') , text = "logᵧ(x)", bg="#f6f6f6", command= self.reiniciar, bd=3)
+        self.botonlogy.place(x=110, y=490, width=80, height=50)
+
+        self.botonDiv = Button(self.ventana, font = ('arial', 12, 'bold') , text = "1/x", bg="#f6f6f6", command= self.reiniciar, bd=3)
+        self.botonDiv.place(x=200, y=490, width=80, height=50)
+
+        self.botonRaiz2 = Button(self.ventana, font = ('arial', 12, 'bold') , text = "√x", bg="#f6f6f6", command= self.reiniciar, bd=3)
+        self.botonRaiz2.place(x=290, y=490, width=80, height=50)
+
+        self.botonRaizY = Button(self.ventana, font = ('arial', 12, 'bold') , text = "ʸ√x", bg="#f6f6f6", command= self.reiniciar, bd=3)
+        self.botonRaizY.place(x=20, y=550, width=80, height=50)
+
+        self.botonExp = Button(self.ventana, font = ('arial', 12, 'bold') , text = "exp(x)", bg="#f6f6f6", command= self.reiniciar, bd=3)
+        self.botonExp.place(x=110, y=550, width=80, height=50)
+
+        self.botonEle = Button(self.ventana, font = ('arial', 12, 'bold') , text = "x^y", bg="#f6f6f6", command= self.reiniciar, bd=3)
+        self.botonEle.place(x=200, y=550, width=80, height=50)
+
+        self.botonFact = Button(self.ventana, font = ('arial', 12, 'bold') , text = "x!", bg="#f6f6f6", command= self.reiniciar, bd=3)
+        self.botonFact.place(x=290, y=550, width=80, height=50)
     
     def reiniciar (self):
         self.pantalla.delete('1.0', END)
