@@ -178,7 +178,7 @@ def log_t (x , y):
 
     # Casos especiales
     if x <= 0: return False
-    if y < 2 or not isinstance(y, int): return False
+    if y < 2 or not float.is_integer(y): return False
 
     res = ln_t(x) * div_t(ln_t(y))
 
@@ -195,8 +195,8 @@ def log_t (x , y):
 def power_t (x , y):
 
     # Casos especiales
-    if x <= 0 and isinstance(y, float): return False
-    elif x <= 0 and isinstance(y, int):
+    if x <= 0 and not float.is_integer(y): return False
+    elif x <= 0 and float.is_integer(y):
         if y % 2 == 0:
             res = exp_t(y * ln_t(x))
         else:
@@ -298,7 +298,7 @@ def sqrt_t (a):
 
 def root_t (x, y):
     # Casos especiales
-    if not isinstance(y, int) or y < 2: return False
+    if not float.is_integer(y) or y < 2: return False
     if y % 2 == 0 and x < 0 : return False
 
     res = x * 0.5
@@ -314,8 +314,6 @@ def root_t (x, y):
             break
 
     return res
-
-print(root_t(8,6))
 
 # La función asin_t aproxima el valor de arcsin(a)
 # Sintáxis de la función: res = asin_t (a)
