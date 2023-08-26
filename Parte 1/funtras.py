@@ -315,6 +315,8 @@ def root_t (x, y):
 
     return res
 
+print(root_t(8,6))
+
 # La función asin_t aproxima el valor de arcsin(a)
 # Sintáxis de la función: res = asin_t (a)
 # Parámetros de entrada:

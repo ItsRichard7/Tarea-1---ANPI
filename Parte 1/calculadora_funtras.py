@@ -276,7 +276,7 @@ class Interfaz:
             self.mostrarRes(res)
 
     def calcRoot(self):
-        res = root_t(self.tomarX(), self.tomarY())
+        res = root_t(self.tomarX(), int(self.tomarY()))
         if res == False: self.errorMat()
         else: 
             self.mostrarRes(res)
@@ -298,7 +298,7 @@ class Interfaz:
 
     def calcFact(self):
         val = self.tomarX()
-        if not isinstance(val, int) or val < 0: 
+        if val / int(val) != 1 or val < 0: 
             self.entradaY.delete('1.0', END)
             self.errorMat()
         else: 
