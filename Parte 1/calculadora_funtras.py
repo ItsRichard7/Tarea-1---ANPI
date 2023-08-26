@@ -1,22 +1,43 @@
 from tkinter import *
+from funtras import *
 
 class Interfaz:
-    def __init__(self, ventana):
+    
+    def __init__(self, ventana): # Constructor de la clase Interfaz
         #Inicializar la ventana con un título
         self.ventana = ventana
-        self.ventana.title("Calculadora")
+        self.ventana.title("Calculadora NumPy")
+        self.ventana.geometry("390x690")
+        self.ventana.resizable(False, False)
+        self.ventana.configure(background="#1E0B05")
 
         #Agregar una caja de texto para que sea la pantalla de la calculadora
-        self.pantalla = Text(ventana, state="disabled", width=40, height=3, background="orchid", foreground="white", font=("Helvetica",15))
+        self.pantalla = Text(self.ventana, font=('arial',23,'bold'), bd = 20, bg = "powder blue")
+        self.pantalla.place(x = 20, y = 20, width = 350, height = 80)
 
-        #Ubicar la pantalla en la ventana
-        self.pantalla.grid(row=0, column=0, columnspan=4, padx=5, pady=5)
+        self.textoX = Label(self.ventana, text="Variable X =", justify= "center", font=("Helvetica", 13, "bold"), bg="#6c7073", borderwidth=6, relief="groove")
+        self.textoX.place(x = 20, y = 120, width = 120, height = 50)
+        
+        self.entradaX = Text(self.ventana, font=('arial',16,'bold'), bd=10, bg="powder blue", )
+        self.entradaX.place(x = 150, y = 120, width = 220, height = 50)
 
-        #Inicializar la operación mostrada en pantalla como string vacío
-        self.operacion=""
+        self.textoY = Label(self.ventana, text="Variable Y =", justify= "center", font=("Helvetica", 13, "bold"), bg="#6c7073", borderwidth=6, relief="groove")
+        self.textoY.place(x=20, y=180, width=120, height=50)
+        
+        self.entradaY = Text(self.ventana, font=('arial', 16, 'bold'), bd=10, bg="powder blue")
+        self.entradaY.place(x = 150, y = 180, width = 220, height = 50)
 
         #Crear los botones de la calculadora
-        boton1 = self.crearBoton("senh(x)")
+        self.botonReset = Button(self.ventana, font = ('arial', 16, 'bold') , text = "Reiniciar", bg="#f6f6f6", command= self.reiniciar, bd=3)
+        self.botonReset.place(x=100, y=240, width=190, height=50)
+
+        self.botonSenh = Button(self.ventana, font = ('arial', 12, 'bold') , text = "senh(x)", bg="#f6f6f6", command= self.reiniciar, bd=3)
+        self.botonSenh.place(x=20, y=310, width=80, height=50)
+
+        self.botonCosh = Button(self.ventana, font = ('arial', 12, 'bold') , text = "cosh(x)", bg="#f6f6f6", command= self.reiniciar, bd=3)
+        self.botonCosh.place(x=110, y=310, width=80, height=50)
+
+        """boton1 = self.crearBoton("senh(x)")
         boton2 = self.crearBoton("cosh(x)")
         boton3 = self.crearBoton("tanh(x)")
         boton4 = self.crearBoton("asen(x)")
@@ -42,55 +63,17 @@ class Interfaz:
         for fila in range(2,8):
             for columna in range(3):
                 botones[contador].grid(row = fila , column = columna)
-                contador += 1
-        
-        return
-
-
-    #Crea un botón mostrando el valor pasado por parámetro
-    def crearBoton(self, valor, escribir=True, ancho=9, alto=1):
-        return Button(self.ventana, text=valor, width=ancho, height=alto, font=("Helvetica",15), command=lambda:self.click(valor,escribir))
-
-
-    #Controla el evento disparado al hacer click en un botón
-    def click(self, texto, escribir):
-        #Si el parámetro 'escribir' es True, entonces el parámetro texto debe mostrarse en pantalla. Si es False, no.
-        if not escribir:
-            #Sólo calcular si hay una operación a ser evaluada y si el usuario presionó '='
-            if texto=="=" and self.operacion!="":
-                #Reemplazar el valor unicode de la división por el operador división de Python '/'
-                self.operacion=re.sub(u"\u00F7", "/", self.operacion)
-                resultado=str(eval(self.operacion))
-                self.operacion=""
-                self.limpiarPantalla()
-                self.mostrarEnPantalla(resultado)
-            #Si se presionó el botón de borrado, limpiar la pantalla
-            elif texto==u"\u232B":
-                self.operacion=""
-                self.limpiarPantalla()
-        #Mostrar texto
-        else:
-            self.operacion+=str(texto)
-            self.mostrarEnPantalla(texto)
+                contador += 1"""
         return
     
+    def reiniciar (self):
+        self.pantalla.delete('1.0', END)
+        self.entradaX.delete('1.0', END)
+        self.entradaY.delete('1.0', END)
 
-    #Borra el contenido de la pantalla de la calculadora
-    def limpiarPantalla(self):
-        self.pantalla.configure(state="normal")
-        self.pantalla.delete("1.0", END)
-        self.pantalla.configure(state="disabled")
-        return
-    
-
-    #Muestra en la pantalla de la calculadora el contenido de las operaciones y los resultados
-    def mostrarEnPantalla(self, valor):
-        self.pantalla.configure(state="normal")
-        self.pantalla.insert(END, valor)
-        self.pantalla.configure(state="disabled")
-        return
-
-
-ventana_principal=Tk()
-calculadora=Interfaz(ventana_principal)
-ventana_principal.mainloop()
+#------------------ Final de la Clase Interfaz --------------------
+ 
+# Inicio de la Aplicacion Instanciando una nueva calculadora
+ventana = Tk()
+calculadora = Interfaz(ventana)
+ventana.mainloop()
