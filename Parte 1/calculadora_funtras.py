@@ -1,6 +1,7 @@
 from tkinter import *
 from funtras import *
 
+# Clase que contiene la interfaz gráfica de la aplicación desarrollado con Tkinter
 class Interfaz:
     
     def __init__(self, ventana): # Constructor de la clase Interfaz
@@ -96,11 +97,13 @@ class Interfaz:
         self.botonFact = Button(self.ventana, font = ('arial', 12, 'bold') , text = "x!", bg="#f6f6f6", command= self.calcFact, bd=3)
         self.botonFact.place(x=290, y=540, width=80, height=50)
     
+# Metodo para eliminar todas las entradas de los inputs
     def reiniciar (self):
         self.pantalla.delete('1.0', END)
         self.entradaX.delete('1.0', END)
         self.entradaY.delete('1.0', END)
 
+# Metodo para pasar de string a float
     def convFloat (self, input, widget):
         try: 
             value = float(input)
@@ -109,193 +112,218 @@ class Interfaz:
             widget.delete('1.0', END)
             widget.insert(END, "Ins. núm. válido")
 
+# Metodo para tomar el numero en el input y
     def tomarX (self):
         input = self.convFloat(self.entradaX.get("1.0",END), self.entradaX)
         return input
     
+# Metodo para tomar el numero en el input y
     def tomarY (self):
         input = self.convFloat(self.entradaY.get("1.0",END), self.entradaY)
         return input
     
+# Metodo para mostrar en pantalla el resultado
     def mostrarRes(self, res):
         self.pantalla.delete('1.0', END)
         self.pantalla.insert(END, str(res))
     
+# Metodo para mostrar en pantalla en caso de error
     def errorMat(self):
         self.pantalla.delete('1.0', END)
         self.pantalla.insert(END, "Error Matemático")
     
+# Metodo para el botón de seno hiperbólico
     def calcSenh(self):
         res = sinh_t(self.tomarX())
-        if res == False: 
+        if res == "F": 
             self.entradaY.delete('1.0', END)
             self.errorMat()
         else: 
             self.entradaY.delete('1.0', END)
             self.mostrarRes(res)
 
+ # Metodo para el botón de coseno hiperbólico
     def calcCosh(self):
         res = cosh_t(self.tomarX())
-        if res == False: 
+        if res == "F": 
             self.entradaY.delete('1.0', END)
             self.errorMat()
         else: 
             self.entradaY.delete('1.0', END)
             self.mostrarRes(res)
     
+ # Metodo para el botón de tangente hiperbólico
     def calcTanh(self):
         res = tanh_t(self.tomarX())
-        if res == False: 
+        if res == "F": 
             self.entradaY.delete('1.0', END)
             self.errorMat()
         else: 
             self.entradaY.delete('1.0', END)
             self.mostrarRes(res)
 
+ # Metodo para el botón de arcseno
     def calcAsen(self):
         res = asin_t(self.tomarX())
-        if res == False: 
+        if res == "F": 
             self.entradaY.delete('1.0', END)
             self.errorMat()
         else: 
             self.entradaY.delete('1.0', END)
             self.mostrarRes(res)
 
+ # Metodo para el botón de arcoseno
     def calcAcos(self):
         res = acos_t(self.tomarX())
-        if res == False: 
+        if res == "F": 
             self.entradaY.delete('1.0', END)
             self.errorMat()
         else: 
             self.entradaY.delete('1.0', END)
             self.mostrarRes(res)  
 
+ # Metodo para el botón de arctangente
     def calcAtan(self):
         res = atan_t(self.tomarX())
-        if res == False: 
+        if res == "F": 
             self.entradaY.delete('1.0', END)
             self.errorMat()
         else: 
             self.entradaY.delete('1.0', END)
             self.mostrarRes(res)    
 
+ # Metodo para el botón de secante
     def calcSec(self):
         res = sec_t(self.tomarX())
-        if res == False: 
+        if res == "F": 
             self.entradaY.delete('1.0', END)
             self.errorMat()
         else: 
             self.entradaY.delete('1.0', END)
             self.mostrarRes(res)  
 
+ # Metodo para el botón de cosecante
     def calcCsc(self):
         res = csc_t(self.tomarX())
-        if res == False: 
+        if res == "F": 
             self.entradaY.delete('1.0', END)
             self.errorMat()
         else: 
             self.entradaY.delete('1.0', END)
             self.mostrarRes(res)    
   
+  # Metodo para el botón de cotangente
     def calcCot(self):
         res = cot_t(self.tomarX())
-        if res == False: 
+        if res == "F": 
             self.entradaY.delete('1.0', END)
             self.errorMat()
         else: 
             self.entradaY.delete('1.0', END)
             self.mostrarRes(res)   
 
+# Metodo para el botón de seno
     def calcSen(self):
         res = sen_t(self.tomarX())
-        if res == False: 
+        if res == "F": 
             self.entradaY.delete('1.0', END)
             self.errorMat()
         else: 
             self.entradaY.delete('1.0', END)
             self.mostrarRes(res)   
 
+# Metodo para el botón de coseno
     def calcCos(self):
         res = cos_t(self.tomarX())
-        if res == False: 
+        if res == "F": 
             self.entradaY.delete('1.0', END)
             self.errorMat()
         else: 
             self.entradaY.delete('1.0', END)
             self.mostrarRes(res)   
 
+# Metodo para el botón de tangente
     def calcTan(self):
         res = tan_t(self.tomarX())
-        if res == False: 
+        if res == "F": 
             self.entradaY.delete('1.0', END)
             self.errorMat()
         else: 
             self.entradaY.delete('1.0', END)
             self.mostrarRes(res)   
 
+# Metodo para el botón de logaritmo natural
     def calcLn(self):
         res = ln_t(self.tomarX())
-        if res == False: 
+        if res == "F": 
             self.entradaY.delete('1.0', END)
             self.errorMat()
         else: 
             self.entradaY.delete('1.0', END)
             self.mostrarRes(res)  
 
+# Metodo para el botón de logaritmo 10
     def calcLog10(self):
-        res = log_t(self.tomarX(), 10)
-        if res == False: 
+        res = log_t(self.tomarX(), 10.0)
+        if res == "F": 
             self.entradaY.delete('1.0', END)
             self.errorMat()
         else: 
             self.entradaY.delete('1.0', END)
             self.mostrarRes(res)    
 
+# Metodo para el botón de logaritmo y
     def calcLogy(self):
         res = log_t(self.tomarX(), self.tomarY())
-        if res == False: self.errorMat()
+        if res == "F": self.errorMat()
         else: 
             self.mostrarRes(res)
 
+# Metodo para el botón de división
     def calcDiv(self):
         res = div_t(self.tomarX())
-        if res == False: 
+        if res == "F": 
             self.entradaY.delete('1.0', END)
             self.errorMat()
         else: 
             self.entradaY.delete('1.0', END)
             self.mostrarRes(res)
 
+# Metodo para el botón de raíz cuadrada
     def calcSqrt(self):
         res = sqrt_t(self.tomarX())
-        if res == False: 
+        if res == "F": 
             self.entradaY.delete('1.0', END)
             self.errorMat()
         else: 
             self.entradaY.delete('1.0', END)
             self.mostrarRes(res)
 
+# Metodo para el botón de raíz y
     def calcRoot(self):
         res = root_t(self.tomarX(), (self.tomarY()))
-        if res == False: self.errorMat()
+        if res == "F": self.errorMat()
         else: 
             self.mostrarRes(res)
 
+# Metodo para el botón de exponencial
     def calcExp(self):
         res = exp_t(self.tomarX())
-        if res == False: 
+        if res == "F": 
             self.entradaY.delete('1.0', END)
             self.errorMat()
         else: 
             self.entradaY.delete('1.0', END)
             self.mostrarRes(res)
 
+# Metodo para el botón de elevado
     def calcPower(self):
         res = power_t(self.tomarX(), self.tomarY())
-        if res == False: self.errorMat()
+        if res == "F": self.errorMat()
         else: 
             self.mostrarRes(res)
 
+# Metodo para el botón de factorial
     def calcFact(self):
         val = self.tomarX()
         if not float.is_integer(val) or val < 0: 

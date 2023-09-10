@@ -43,7 +43,7 @@ def div_t (a):
 
     # Casos especiales
     if a == 1: return 1
-    if a == 0: return 0
+    if a == 0: return "F"
 
     # Indicador de si el número ingresado es negativo
     negative = False 
@@ -149,7 +149,7 @@ def tan_t (a):
 def ln_t (a):
 
     #Casos especiales
-    if a <= 0: return False
+    if a <= 0: return "F"
 
     res = 0
     const = (a-1) * div_t(a+1)
@@ -177,8 +177,8 @@ def ln_t (a):
 def log_t (x , y):
 
     # Casos especiales
-    if x <= 0: return False
-    if y < 2 or not float.is_integer(y): return False
+    if x <= 0: return "F"
+    if y < 2 or not float.is_integer(y): return "F"
 
     res = ln_t(x) * div_t(ln_t(y))
 
@@ -195,7 +195,7 @@ def log_t (x , y):
 def power_t (x , y):
 
     # Casos especiales
-    if x <= 0 and not float.is_integer(y): return False
+    if x <= 0 and not float.is_integer(y): return "F"
     elif x <= 0 and float.is_integer(y):
         if y % 2 == 0:
             res = exp_t(y * ln_t(x))
@@ -271,8 +271,8 @@ def tanh_t (a):
 
 def sqrt_t (a):
     # Casos especiales
-    if a < 0 : return False
     if a == 0: return 0 
+    if a < 0 : return "F"
 
     res = a / 2
 
@@ -298,8 +298,9 @@ def sqrt_t (a):
 
 def root_t (x, y):
     # Casos especiales
-    if not float.is_integer(y) or y < 2: return False
-    if y % 2 == 0 and x < 0 : return False
+    if x == 0: return 0
+    if not float.is_integer(y) or y < 2: return "F"
+    if y % 2 == 0 and x < 0 : return "F"
 
     res = x * 0.5
 
@@ -324,7 +325,7 @@ def root_t (x, y):
 
 def asin_t (a):
     # Casos especiales
-    if a > 1 or a < -1: return False
+    if a > 1 or a < -1: return "F"
     if a == 1: return pi_t * div_t(2)
     if a == -1: return - pi_t * div_t(2)
 
@@ -383,6 +384,7 @@ def atan_t (a):
 #         res = aproximación del valor arcsin(a)
 
 def acos_t (a):
+    if a > pi_t or a < 0: return "F"
     res = pi_t * div_t(2) - asin_t(a)
     return res
 
